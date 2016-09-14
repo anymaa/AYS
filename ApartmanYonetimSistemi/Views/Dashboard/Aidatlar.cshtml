@@ -1,0 +1,169 @@
+﻿@model IEnumerable<ApartmanYonetimSistemi.Models.BorcEkle>
+
+
+
+@{
+    ViewBag.Title = "Aidatlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="static-content">
+    <div class="page-content">
+        <ol class="breadcrumb">
+
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">UI Elements</a></li>
+            <li class="active"><a href="ui-tables.html">Tables</a></li>
+        </ol>
+        <div class="container-fluid">
+
+
+
+            @*Borç Ekle*@
+            <style>
+                /*To make sure there is modal displayed with this class for demo*/
+                .visiblemodal {
+                    position: relative;
+                    top: auto;
+                    right: auto;
+                    left: auto;
+                    bottom: auto;
+                    z-index: 1;
+                    display: block;
+                    overflow: hidden;
+                }
+            </style>
+
+
+        @*Borç Ekle Butonu*@
+            <a data-toggle="modal" href="#BorcEkle" class="btn btn-primary-alt btn-label"><i class="ti ti-plus"></i>Borç Ekle</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="BorcEkle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h2 class="modal-title">Borç Ekle</h2>
+                        </div>
+                        <div class="modal-body">
+                            <h2>Text in a modal</h2>
+                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                            <h2>Tooltips in a modal</h2>
+                            <p><a href="#" class="tooltips" title="Tooltip">This link</a> and <a href="#" class="tooltips" title="Tooltip">that link</a> should have tooltips on hover.</p>
+                            <hr>
+                            <h2>Overflowing text to show scroll behavior</h2>
+                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            <p><img src="http://placehold.it/300&text=Placeholder" alt="Fountain" class="img-rounded img-responsive"></p>
+                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+
+
+            <div data-widget-group="group1">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default" data-widget='{"draggable": "false"}'>
+                            <div class="panel-heading">
+                                <h2>Default Tables</h2>
+                                <div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body"}'></div>
+                                <div class="options">
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <p>For basic styling—light padding and only horizontal dividers—add the base class <code>.table</code> to any <code>&lt;table&gt;</code>.
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table m-n">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Açıklama</th>
+                                            <th>Kategori</th>
+                                            <th>Düzenleme</th>
+                                            <th>Ödeme</th>
+                                            <th>Toplam</th>
+                                            <th>Kalan</th>
+                                            <th>Boş Problem</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach (var b in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @b.BorcID
+                                                </td>
+                                                <td>
+                                                    @b.BorcAciklama
+                                                </td>
+                                                <td>
+                                                    @b.BorcKategori
+                                                </td>
+                                                <td>
+                                                    @b.BorcOdemeDurumu
+                                                </td>
+                                                <td>
+                                                    @b.BorcToplam
+                                                </td>
+                                                <td>
+                                                    @b.BorcKalan
+                                                </td>
+                                                <td>
+                                                    @b.BorcKalan
+                                                </td>
+                                            </tr>
+                                        }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div> <!-- .container-fluid -->
+        </div> <!-- #page-content -->
+    </div>
+
+</div>
+
+
+
+<!-- Load page level scripts-->
+<script type="text/javascript" src="~/assets/plugins/form-multiselect/js/jquery.multi-select.min.js"></script>  			<!-- Multiselect Plugin -->
+<script type="text/javascript" src="~/assets/plugins/quicksearch/jquery.quicksearch.min.js"></script>           			<!-- Quicksearch to go with Multisearch Plugin -->
+<script type="text/javascript" src="~/assets/plugins/form-typeahead/typeahead.bundle.min.js"></script>                 	<!-- Typeahead for Autocomplete -->
+<script type="text/javascript" src="~/assets/plugins/form-select2/select2.js"></script>                     			<!-- Advanced Select Boxes -->
+<script type="text/javascript" src="~/assets/plugins/form-autosize/jquery.autosize-min.js"></script>            			<!-- Autogrow Text Area -->
+<script type="text/javascript" src="~/assets/plugins/form-colorpicker/js/bootstrap-colorpicker.min.js"></script> 			<!-- Color Picker -->
+<script type="text/javascript" src="~/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js"></script>      <!-- Touchspin -->
+<script type="text/javascript" src="~/assets/plugins/form-fseditor/jquery.fseditor-min.js"></script>            			<!-- Fullscreen Editor -->
+<script type="text/javascript" src="~/assets/plugins/form-jasnyupload/fileinput.min.js"></script>               			<!-- File Input -->
+<script type="text/javascript" src="~/assets/plugins/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>     		<!-- Tokenfield -->
+<script type="text/javascript" src="~/assets/plugins/card/lib/js/card.js"></script> 										<!-- Card -->
+<!-- <script type="text/javascript" src="~/assets/plugins/iCheck/icheck.min.js"></script>  -->    							<!-- iCheck // already included on site-level -->
+<script type="text/javascript" src="~/assets/plugins/switchery/switchery.js"></script>     								<!-- Switchery -->
+<script type="text/javascript" src="~/assets/plugins/jquery-chained/jquery.chained.min.js"></script> 						<!-- Chained Select Boxes -->
+<script type="text/javascript" src="~/assets/plugins/jquery-mousewheel/jquery.mousewheel.min.js"></script> <!-- MouseWheel Support -->
+<script type="text/javascript" src="~/assets/demo/demo-formcomponents.js"></script>
+<!-- End loading page level scripts-->
