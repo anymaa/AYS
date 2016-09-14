@@ -25,7 +25,7 @@ namespace ApartmanYonetimSistemi.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<BorcEkle> BorcEkles { get; set; }
+        public virtual DbSet<TBLUSERS> TBLUSERS { get; set; }
+        public virtual DbSet<TBLADDDEBT> TBLADDDEBT { get; set; }
     }
 }

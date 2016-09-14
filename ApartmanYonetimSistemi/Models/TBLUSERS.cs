@@ -12,12 +12,15 @@ namespace ApartmanYonetimSistemi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class TBLUSERS
     {
-        public int UserID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public bool IsActive { get; set; }
+        public int TABLEID { get; set; }
+        public int USERID { get; set; }
+        public string USERNAME { get; set; }
+        public string PASSWORD { get; set; }
+        public string EMAIL { get; set; }
+        public bool ISACTIVE { get; set; }
+        public string NAME { get; set; }
+        public string SURNAME { get; set; }
     }
 }

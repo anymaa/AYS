@@ -8,10 +8,12 @@ using ApartmanYonetimSistemi.Models;
 
 namespace ApartmanYonetimSistemi.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         // GET: Account
-        ApartmanYonetimSistemiEntities db = new ApartmanYonetimSistemiEntities();
+        private ApartmanYonetimSistemiEntities db = new ApartmanYonetimSistemiEntities();
+        private SessionModel sm = new SessionModel();
+
         [Authorized]
         public ActionResult Index()
         {
@@ -26,25 +28,32 @@ namespace ApartmanYonetimSistemi.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection form)
         {
-            string username = form["username"].ToString();
-            string password = form["password"].ToString();
+                var USERNAME = Request.Form["username"];
+                var PASSWORD = Request.Form["password"];
 
-            var usr = (from u in db.Users
-                where u.Username == username && u.Password == password
-                select u).FirstOrDefault();
+                var data = db.TBLUSERS.FirstOrDefault(x => x.USERNAME == USERNAME && x.PASSWORD == PASSWORD);
+                if (data != null)
+                {
+                    sm.User = data;
+                    sm.Save();
+                    Session["Member"] = sm;
 
-            if (usr != null)
-            {
-                Session["Login"] = "1";
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else
-            {
-                Session["Login"] = "0";
-            }
+                    if (db.TBLADDDEBT.Count(x => x.USERID == data.USERID) == 0)
+                    {
+                        return RedirectToAction("Index", "Dashboard");
+                    }
+                    return RedirectToAction("Index", "Dashboard");
+                }
 
-            TempData["Message"] = "Username and password is wrong";
-            return View();
+                Session["hidealert"] = "show";
+
+                return RedirectToAction("Login", "Account");
+          }
+
+        public ActionResult SignOut()
+        {
+            sm.Remove();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

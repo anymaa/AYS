@@ -10,7 +10,7 @@ using ApartmanYonetimSistemi.Models;
 namespace ApartmanYonetimSistemi.Controllers
 {
 
-    public class DashboardController : Controller
+    public class DashboardController : BaseController
     {
         ApartmanYonetimSistemiEntities db = new ApartmanYonetimSistemiEntities();
 
@@ -19,7 +19,16 @@ namespace ApartmanYonetimSistemi.Controllers
         [Authorized]
         public ActionResult Index()
         {
-                return View();  
+
+
+            return View();  
+        }
+
+        public PartialViewResult Menu()
+        {
+ 
+
+            return PartialView();
         }
 
         [Authorized]
@@ -28,9 +37,10 @@ namespace ApartmanYonetimSistemi.Controllers
             //var borcEkle = new BorcEkle();
             //ViewData.Model = db.BorcEkles.ToList();
             //var borc = (from b in db.BorcEkles
-            //           select b).ToList();
+            //            select b).ToList();
+            var addDebt = db.TBLADDDEBT;
 
-            return View(db.BorcEkles);
+            return View(addDebt);
         }
 
         //public class BorcEkle : DbContext

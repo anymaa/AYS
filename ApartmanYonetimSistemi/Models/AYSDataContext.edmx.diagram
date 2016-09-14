@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="748c434d744840f6afaeec3165939de2" Name="Diagram1">
-        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.User" Width="1.375" PointX="0.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.BorcEkle" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLUSERS" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLADDDEBT" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

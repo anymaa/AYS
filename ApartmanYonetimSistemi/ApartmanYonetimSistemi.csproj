@@ -1859,6 +1859,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -2223,6 +2224,8 @@
     <Content Include="Views\Dashboard\BorcEkle.cshtml" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.0.min.map" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Profil\Profil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2235,7 +2238,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attributes\Authorized.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2255,10 +2260,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AYSDataContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\BorcEkle.cs">
+    <Compile Include="Models\TBLADDDEBT.cs">
       <DependentUpon>AYSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
+    <Compile Include="Models\TBLUSERS.cs">
       <DependentUpon>AYSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
