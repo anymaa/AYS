@@ -14,19 +14,13 @@ namespace ApartmanYonetimSistemi.Controllers
         private ApartmanYonetimSistemiEntities db = new ApartmanYonetimSistemiEntities();
         private SessionModel sm = new SessionModel();
 
-        [Authorized]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Login(FormCollection form)
+
+        public ActionResult SignIn()
         {
                 var USERNAME = Request.Form["username"];
                 var PASSWORD = Request.Form["password"];

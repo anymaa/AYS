@@ -25,5 +25,7 @@ namespace ApartmanYonetimSistemi.Models
         public System.DateTime FINISH { get; set; }
         public string NAME { get; set; }
         public string EXPLANATION { get; set; }
+    
+        public virtual TBLUSERS TBLUSERS { get; set; }
     }
 }

@@ -15,11 +15,11 @@ namespace ApartmanYonetimSistemi.Controllers
             var action = filterContext.RouteData.GetRequiredString("action");
             var controller = filterContext.RouteData.GetRequiredString("controller");
 
-            if (session == null && controller != "Login")
-            {
-                filterContext.Result = RedirectToAction("Login", "Account");
-                return;
-            }
+            //if (session == null && controller != "SignIn")
+            //{
+            //    filterContext.Result = RedirectToAction("Login", "Account");
+            //    return;
+            //}
         }
     }
 

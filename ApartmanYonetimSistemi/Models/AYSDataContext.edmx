@@ -34,31 +34,38 @@
           <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SURNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_TBLADDDEBT_TBLUSERS1">
+          <End Role="TBLUSERS" Type="Self.TBLUSERS" Multiplicity="1" />
+          <End Role="TBLADDDEBT" Type="Self.TBLADDDEBT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLUSERS">
+              <PropertyRef Name="TABLEID" />
+            </Principal>
+            <Dependent Role="TBLADDDEBT">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ApartmanYonetimSistemiModelStoreContainer">
           <EntitySet Name="TBLADDDEBT" EntityType="Self.TBLADDDEBT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLUSERS" EntityType="Self.TBLUSERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLADDDEBT_TBLUSERS1" Association="Self.FK_TBLADDDEBT_TBLUSERS1">
+            <End Role="TBLUSERS" EntitySet="TBLUSERS" />
+            <End Role="TBLADDDEBT" EntitySet="TBLADDDEBT" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ApartmanYonetimSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ApartmanYonetimSistemiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TBLUSERS" EntityType="ApartmanYonetimSistemiModel.TBLUSERS" />
           <EntitySet Name="TBLADDDEBT" EntityType="ApartmanYonetimSistemiModel.TBLADDDEBT" />
-          </EntityContainer>
-        <EntityType Name="TBLUSERS">
-          <Key>
-            <PropertyRef Name="TABLEID" />
-          </Key>
-          <Property Name="TABLEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="USERID" Type="Int32" Nullable="false" />
-          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SURNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
+          <EntitySet Name="TBLUSERS" EntityType="ApartmanYonetimSistemiModel.TBLUSERS" />
+          <AssociationSet Name="FK_TBLADDDEBT_TBLUSERS1" Association="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS1">
+            <End Role="TBLUSERS" EntitySet="TBLUSERS" />
+            <End Role="TBLADDDEBT" EntitySet="TBLADDDEBT" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="TBLADDDEBT">
           <Key>
             <PropertyRef Name="TABLEID" />
@@ -74,27 +81,40 @@
           <Property Name="FINISH" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NAME" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="EXPLANATION" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLUSERS" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS1" FromRole="TBLADDDEBT" ToRole="TBLUSERS" />
         </EntityType>
+        <EntityType Name="TBLUSERS">
+          <Key>
+            <PropertyRef Name="TABLEID" />
+          </Key>
+          <Property Name="TABLEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERID" Type="Int32" Nullable="false" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SURNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLADDDEBT" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS1" FromRole="TBLUSERS" ToRole="TBLADDDEBT" />
+        </EntityType>
+        <Association Name="FK_TBLADDDEBT_TBLUSERS1">
+          <End Type="ApartmanYonetimSistemiModel.TBLUSERS" Role="TBLUSERS" Multiplicity="1" />
+          <End Type="ApartmanYonetimSistemiModel.TBLADDDEBT" Role="TBLADDDEBT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLUSERS">
+              <PropertyRef Name="TABLEID" />
+            </Principal>
+            <Dependent Role="TBLADDDEBT">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ApartmanYonetimSistemiModelStoreContainer" CdmEntityContainer="ApartmanYonetimSistemiEntities">
-          <EntitySetMapping Name="TBLUSERS">
-            <EntityTypeMapping TypeName="ApartmanYonetimSistemiModel.TBLUSERS">
-              <MappingFragment StoreEntitySet="TBLUSERS">
-                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
-                <ScalarProperty Name="USERID" ColumnName="USERID" />
-                <ScalarProperty Name="TABLEID" ColumnName="TABLEID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TBLADDDEBT">
             <EntityTypeMapping TypeName="ApartmanYonetimSistemiModel.TBLADDDEBT">
               <MappingFragment StoreEntitySet="TBLADDDEBT">
@@ -108,6 +128,20 @@
                 <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
                 <ScalarProperty Name="DELETE" ColumnName="DELETE" />
                 <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="TABLEID" ColumnName="TABLEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLUSERS">
+            <EntityTypeMapping TypeName="ApartmanYonetimSistemiModel.TBLUSERS">
+              <MappingFragment StoreEntitySet="TBLUSERS">
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
                 <ScalarProperty Name="TABLEID" ColumnName="TABLEID" />
               </MappingFragment>
             </EntityTypeMapping>

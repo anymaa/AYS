@@ -56,5 +56,11 @@ namespace ApartmanYonetimSistemi.Controllers
             return View();
         }
 
+        // GET: Profil
+        public ActionResult Profil()
+        {
+            return View();
+        }
+
     }
 }

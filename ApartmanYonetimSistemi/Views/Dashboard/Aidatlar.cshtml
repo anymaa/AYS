@@ -1,4 +1,5 @@
-﻿
+﻿@using ApartmanYonetimSistemi.Models
+
 
 @{
     ViewBag.Title = "Aidatlar";
@@ -13,7 +14,7 @@
     <div class="page-content">
         <ol class="breadcrumb">
 
-            <li><a href="index.html">Home</a></li>
+            <li><a href="Index">Ana Sayfa</a></li>
             <li><a href="#">UI Elements</a></li>
             <li class="active"><a href="ui-tables.html">Tables</a></li>
         </ol>
@@ -105,32 +106,36 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach (var b in Model.borcEkle)
-                                        {
+                                        @*@{
+                                            if(Model.addDebt != null) { 
+                                            foreach (var d in Model.addDebt)
+                                            {
                                             <tr>
                                                 <td>
-                                                    @b.BorcID
+                                                    @d.USERID
                                                 </td>
                                                 <td>
-                                                    @b.BorcAciklama
+                                                    @d.EXPLANATION
                                                 </td>
                                                 <td>
-                                                    @b.BorcKategori
+                                                    @d.BorcKategori
                                                 </td>
                                                 <td>
-                                                    @b.BorcOdemeDurumu
+                                                    @d.BorcOdemeDurumu
                                                 </td>
                                                 <td>
-                                                    @b.BorcToplam
+                                                    @d.BorcToplam
                                                 </td>
                                                 <td>
-                                                    @b.BorcKalan
+                                                    @d.BorcKalan
                                                 </td>
                                                 <td>
-                                                    @b.BorcKalan
+                                                    @d.BorcKalan
                                                 </td>
                                             </tr>
-                                        }
+                                                }
+                                            }
+                                        }*@
 
                                         </tbody>
                                     </table>

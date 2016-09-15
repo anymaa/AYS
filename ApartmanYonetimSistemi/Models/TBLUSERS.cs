@@ -14,6 +14,12 @@ namespace ApartmanYonetimSistemi.Models
     
     public partial class TBLUSERS
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TBLUSERS()
+        {
+            this.TBLADDDEBT = new HashSet<TBLADDDEBT>();
+        }
+    
         public int TABLEID { get; set; }
         public int USERID { get; set; }
         public string USERNAME { get; set; }
@@ -22,5 +28,8 @@ namespace ApartmanYonetimSistemi.Models
         public bool ISACTIVE { get; set; }
         public string NAME { get; set; }
         public string SURNAME { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TBLADDDEBT> TBLADDDEBT { get; set; }
     }
 }
