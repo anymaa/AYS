@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     $('#daterangepicker1').daterangepicker({
         "locale": {
-            "format": "DD.MM.YYYY",
+            "format": "DD MM YYYY",
             "separator": " - ",
             "applyLabel": "Kaydet",
             "cancelLabel": "Ýptal",
@@ -41,18 +41,17 @@ $(document).ready(function () {
     },
 
     function(start, end) {
-        $('#reportrange span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
+        $('#reportrange span').html(start.format('DD MM YYYY') + ' - ' + end.format('DD MM YYYY'));
         startDate = start;
         endDate = end;    
+        console.log(startDate.format('DD MM YYYY') + ' - ' + endDate.format('DD MM YYYY'));
 
     }
     );
 
-    $('#reportrange span').html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
+    $('#reportrange span').html(moment().subtract('days', 29).format('DD MM YYYY') + ' - ' + moment().format('DD MM YYYY'));
 
-    $('#saveBtn').click(function () {
-        console.log(startDate.format('D MMMM YYYY') + ' - ' + endDate.format('D MMMM YYYY'));
-    });
+
 
 
 		$('#daterangepicker2').daterangepicker({

@@ -50,38 +50,35 @@ namespace ApartmanYonetimSistemi.Controllers
         //    public DbSet<BorcEkle> BorcEkles { get; set; }
 
         //}
-
+        [HttpGet]
         public ActionResult BorcEkle()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult BorcEkle(TBLADDDEBT tempDebt, string aciklama, string hesap, decimal tutar, DateTime start, DateTime end , string kategori)
+        public ActionResult BorcEkle(TBLADDDEBT tempDebt, string aciklama, string hesap, decimal tutar/*, DateTime start, DateTime end , string kategori*/)
         {
             var addDebt = new TBLADDDEBT();
             addDebt.EXPLANATION = aciklama;
             addDebt.BILLACCUNT = hesap;
             addDebt.AMOUNT = tutar;
-            addDebt.DATEOFISSUE = start;
-            addDebt.DUEDATE = end;
-            addDebt.TBLCATEGORY.CATEGORYNAME = kategori;
-            addDebt.CATEGORYID = addDebt.TBLCATEGORY.CATEGORYID;
+            //addDebt.DATEOFISSUE = start;
+            //addDebt.DUEDATE = end;
+            //addDebt.TBLCATEGORY.CATEGORYNAME = kategori;
+            //addDebt.CATEGORYID = addDebt.TBLCATEGORY.CATEGORYID;
             addDebt.ISACTIVE = true;
-            addDebt.REGDATE = DateTime.Now;
+            //addDebt.REGDATE = DateTime.Now;
             addDebt.USERID = SessionModel.Current.User.USERID;
-            //addDebt.EXPLANATION = form["Aciklama"].Trim();
-            //addDebt.BILLACCUNT = form["Hesap"].Trim();
-            //addDebt.AMOUNT = Convert.ToDecimal(form["Hesap"].Trim());
-            //addDebt.DATEOFISSUE = Convert.ToDateTime(form["daterangepicker_start"]);
-            //addDebt.DUEDATE = Convert.ToDateTime(form["daterangepicker_end"]);
-            //addDebt.TBLCATEGORY.CATEGORYNAME = form["Kategori"]; 
+            tempDebt = addDebt;
+
 
             db.TBLADDDEBT.Add(addDebt);
             db.SaveChanges();
 
-            return RedirectToAction("Aidatlar" , "Dashboard");
+            return View();
         }
+
 
         // GET: Profil
         public ActionResult Profil()

@@ -19,11 +19,11 @@ namespace ApartmanYonetimSistemi.Models
         public string EXPLANATION { get; set; }
         public string BILLACCUNT { get; set; }
         public decimal AMOUNT { get; set; }
-        public System.DateTime DATEOFISSUE { get; set; }
-        public System.DateTime DUEDATE { get; set; }
+        public Nullable<System.DateTime> DATEOFISSUE { get; set; }
+        public Nullable<System.DateTime> DUEDATE { get; set; }
         public Nullable<int> CATEGORYID { get; set; }
         public bool ISACTIVE { get; set; }
-        public System.DateTime REGDATE { get; set; }
+        public Nullable<System.DateTime> REGDATE { get; set; }
     
         public virtual TBLCATEGORY TBLCATEGORY { get; set; }
         public virtual TBLUSERS TBLUSERS { get; set; }

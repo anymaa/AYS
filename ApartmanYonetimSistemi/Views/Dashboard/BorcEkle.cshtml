@@ -32,74 +32,75 @@
                     </div>
                     <div class="panel-editbox" data-widget-controls=""></div>
                     <div class="panel-body">
-                        <div class="form-horizontal row-border">
+@{
+    <div class="form-horizontal row-border">
 
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Açıklama</label>
-                                <div class="col-sm-8">
-                                    <input type="text" id="aciklama" class="form-control">
-                                </div>
-                            </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Açıklama</label>
+            <div class="col-sm-8">
+                <input type="text" id="aciklama" class="form-control">
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Hesap</label>
-                                <div class="col-sm-8">
-                                    <input type="text" id="hesap" class="form-control tooltips" data-trigger="hover" data-original-title="Kat maliki, kiracı, tedarikçi veya personel seçiniz. Girdiğiniz hesap adı sistemde yok ise yeni oluşturulur.">
-                                </div>
-                            </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Hesap</label>
+            <div class="col-sm-8">
+                <input type="text" id="hesap" class="form-control tooltips" data-trigger="hover" data-original-title="Kat maliki, kiracı, tedarikçi veya personel seçiniz. Girdiğiniz hesap adı sistemde yok ise yeni oluşturulur.">
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Tutar</label>
-                                <div class="col-sm-8">
-                                    <input type="text" id="tutar" class="form-control mask" data-inputmask="'mask':'999.999,99 ₺', 'greedy' : true, 'rightAlignNumerics' : false">
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Düzenlenme ve Ödeme Tarihi</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
-                                        <input type="text" class="form-control" id="daterangepicker1">
-                                    </div>
-                                </div>
-                            </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Tutar</label>
+            <div class="col-sm-8">
+                <input type="text" id="tutar" class="form-control" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}$"/>
+            </div>
+        </div>
 
 
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Kategori</label>
-                                <div class="col-sm-8">
-                                    @foreach (var item in db.TBLCATEGORY)
-                                    {
-
-                                        <input type="hidden" id="e12" style="width: 100% !important" value="@item.CATEGORYNAME" />
-                                    }
-                                    <p class="help-block">İşleme uygun kategoriyi seçin veya yeni kategori ekleyin.</p>
-                                </div>
-                            </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Düzenlenme ve Ödeme Tarihi</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                    <input type="text" class="form-control" id="daterangepicker1">
+                </div>
+            </div>
+        </div>
 
 
-                            <div class="hidden form-group">
-                                <label class="col-sm-2 control-label">Fullscreen Textarea</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control fullscreen"></textarea>
-                                </div>
-                            </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Kategori</label>
+            <div class="col-sm-8">
+                @foreach (var item in db.TBLCATEGORY)
+                {
 
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-sm-8 col-sm-offset-2 form-actions clearfix">
-                                        <button type="button" class="btn-primary btn" onclick="BorcEkle()">Kaydet</button>
-                                        <button class="btn-default btn">Vazgeç</button>
-                                    </div>
-                                </div>
-                            </div>
+                    <input type="hidden" id="e12" style="width: 100% !important" value="@item.CATEGORYNAME"/>
+                }
+                <p class="help-block">İşleme uygun kategoriyi seçin veya yeni kategori ekleyin.</p>
+            </div>
+        </div>
 
 
-                        </div>
+        <div class="hidden form-group">
+            <label class="col-sm-2 control-label">Fullscreen Textarea</label>
+            <div class="col-sm-8">
+                <textarea class="form-control fullscreen"></textarea>
+            </div>
+        </div>
 
-                    </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 form-actions clearfix">
+                    <button type="submit" class="btn-primary btn"  onclick="BorcEkle()">Kaydet</button>
+                    <button class="btn-default btn">Vazgeç</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}                  
+</div>
 
                 </div>
 
@@ -137,6 +138,8 @@
 <script type="text/javascript" src="~/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> <!-- DateTime Picker -->
 <script type="text/javascript" src="~/assets/plugins/clockface/js/clockface.js"></script>     								<!-- Clockface -->
 <script type="text/javascript" src="~/assets/demo/demo-pickers.js" charset="windows-1254"></script>
+<script type="text/javascript" src="~/assets/plugins/pines-notify/pnotify.min.js"></script>
+
 <!-- End loading page level scripts-->
 
 <script>
@@ -144,10 +147,10 @@
 </script>
 
 <script>
+
     function BorcEkle() {
-        console.log("Oldu Mu?");
-        if ($("#aciklama").val() == null || $("#hesap").val() == null || $("#daterangepicker1.start").val() == null || $("#daterangepicker1.end").val() == null || $("#e12").val() == null) {
-            $.PNotify({
+        if ($("#aciklama").val() == "" || $("#hesap").val() == "" || $("#tutar").val() == "" ) {
+            new PNotify({
                 title: 'Ups!',
                 text: 'Lütfen alanları doldurunuz.',
                 type: 'error',
@@ -155,134 +158,30 @@
                 styling: 'fontawesome'
             });
         } else {
-            $.PNotify({
+            new PNotify({
                 title: 'Borç Eklendi',
                 text: 'Borç verisi başarılyla eklendi.',
                 type: 'success',
                 icon: 'ti ti-check',
                 styling: 'fontawesome'
-            })
+            });
 
             $.post("@Url.Action("BorcEkle", "Dashboard")", {
                 aciklama: $("#aciklama").val(),
                 hesap: $("#hesap").val(),
-                start: $("#start").val(),
-                end: $("#end").val(),
-                kategori: $("#e12").val()
-            }, function(data) {
-                $.PNotify({
-                    title: 'Borç Eklendi',
-                    text: 'Borç verisi başarılyla eklendi.',
-                    type: 'success',
-                    icon: 'ti ti-check',
-                    styling: 'fontawesome'
-                }).then(function() {
-                    @Url.Action("Aidatlar", "Dashboard")
+                tutar: $("#tutar").val(),
+                //start: $("#start").val(),
+                //end: $("#end").val(),
+                //kategori: $("#e12").val()
 
-                }, function(dismis) {
-                    if (dismis == 'cancel' || dismis == 'overlay') {
-                        location.reload()
-                    }
-                })
-            })
-        }
-    }
+            }).then(function() {
+                location.reload("@Url.Action("Aidatlar", "Dashboard")");
 
-
-</script>
-
-<script type="text/javascript">
-
-    function go() {
-        window.location = '@Url.Action("Index","Kullanici")';
-    }
-    function Add() {
-        if ($("#yetkiid").val() == "") {
-            toastr.warning("Lütfen yetki bölümünü seçiniz!");
-            return;
-        }
-        if ($("#gorevid").val() == "") {
-            toastr.warning("Lütfen görev bölümünü seçiniz!");
-            return;
-        }
-        if ($("#birim").val() == "") {
-            toastr.warning("Lütfen birim bölümünü seçiniz!");
-            return;
-        }
-        if ($("#isim").val() == "") {
-            toastr.warning("Lütfen isim bölümünü doldurunuz!");
-            return;
-        }
-        if ($("#soyisim").val() == "") {
-            toastr.warning("Lütfen soyisim bölümünü doldurunuz!");
-            return;
-        }
-        if ($("#tck").val().length != 11) {
-            toastr.warning("TC kimlik numarası 11 haneli olmalıdır!");
-            return;
-        }
-        if ($("#mail").val() == "") {
-            toastr.warning("Lütfen geçerli bir mail giriniz!");
-            return;
-        }
-        if ($("#kuladi").val() == "") {
-            toastr.warning("Lütfen kullanıcı adı bölümünü doldurunuz!");
-            return;
-        }
-        if ($("#sifre").val() == "") {
-            toastr.warning("Lütfen şifre bölümünü doldurunuz!");
-            return;
-        }
-        if ($("#sifre").val().length < 8) {
-            toastr.warning("Lütfen şifrenizi en az 8 karakterden oluşturunuz!");
-            return;
-        }
-        var letter_pattern = /^[a-zA-ZüöçğşıİÜĞÇŞÖ\s]+$/i;
-        var number_pattern = /^[0-9]*$/;
-        var char_pattern = /\W/;
-        var ok1 = letter_pattern.test($("#sifre").val());
-        var ok2 = number_pattern.test($("#sifre").val());
-        var ok3 = char_pattern.test($("#sifre").val());
-        if (!(!ok1 && !ok2 && ok3)) {
-            toastr.warning("Şifreniz harf, rakam ve noktalama işaretlerinden oluşmalıdır!");
-            return;
-        }
-        if ($("#sifre").val() != $("#sifre2").val()) {
-            toastr.warning("Girdiğiniz şifre ile tekrarı uyuşmamaktadır! Lütfen kontrol edip tekrar deneyiniz.");
-            return;
-        }
-        var info = {
-            YETKIID: $("#yetkiid").val(),
-            GOREVID: $("#gorevid").val(),
-            AD: $("#isim").val(),
-            SOYAD: $("#soyisim").val(),
-            TCK: $("#tck").val(),
-            KULADI: $("#kuladi").val(),
-            SIFRE: $("#sifre").val(),
-            BIRIMID: $("#birim").val(),
-            MAIL: $("#mail").val()
-        };
-        $.ajax({
-            url: '@Url.Action("AxCreate","Kullanici")',
-            data: JSON.stringify(info),
-            type: 'POST',
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            error: function () {
-                toastr.error('İşlem sırasında hata oluştu!');
-            },
-            success: function (result) {
-                if (result.Success == true) {
-                    toastr.success(result.Description);
-                    setTimeout(go, 3000);
-                }
-                else {
-                    toastr.error(result.Description);
-                }
-
-            }
+            
         });
-    }
+            };
+        }
 
-
+    
 </script>
+

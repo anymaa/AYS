@@ -14,11 +14,11 @@
           <Property Name="EXPLANATION" Type="nvarchar(max)" Nullable="false" />
           <Property Name="BILLACCUNT" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AMOUNT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="DATEOFISSUE" Type="date" Nullable="false" />
-          <Property Name="DUEDATE" Type="date" Nullable="false" />
+          <Property Name="DATEOFISSUE" Type="date" />
+          <Property Name="DUEDATE" Type="date" />
           <Property Name="CATEGORYID" Type="int" />
           <Property Name="ISACTIVE" Type="bit" Nullable="false" />
-          <Property Name="REGDATE" Type="date" Nullable="false" />
+          <Property Name="REGDATE" Type="date" />
         </EntityType>
         <EntityType Name="TBLCATEGORY">
           <Key>
@@ -103,11 +103,11 @@
           <Property Name="EXPLANATION" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BILLACCUNT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AMOUNT" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="DATEOFISSUE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DUEDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATEOFISSUE" Type="DateTime" Precision="0" />
+          <Property Name="DUEDATE" Type="DateTime" Precision="0" />
           <Property Name="CATEGORYID" Type="Int32" />
           <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
-          <Property Name="REGDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="REGDATE" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TBLCATEGORY" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLCATEGORY" FromRole="TBLADDDEBT" ToRole="TBLCATEGORY" />
           <NavigationProperty Name="TBLUSERS" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS" FromRole="TBLADDDEBT" ToRole="TBLUSERS" />
         </EntityType>
