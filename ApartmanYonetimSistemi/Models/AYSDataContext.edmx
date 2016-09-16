@@ -10,36 +10,54 @@
             <PropertyRef Name="TABLEID" />
           </Key>
           <Property Name="TABLEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
-          <Property Name="DELETE" Type="bit" Nullable="false" />
-          <Property Name="CREATEDATE" Type="datetime" Nullable="false" />
-          <Property Name="USERID" Type="int" Nullable="false" />
-          <Property Name="BUILDINGID" Type="int" Nullable="false" />
-          <Property Name="STATUSID" Type="int" Nullable="false" />
-          <Property Name="START" Type="datetime" Nullable="false" />
-          <Property Name="FINISH" Type="datetime" Nullable="false" />
-          <Property Name="NAME" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="USERID" Type="int" />
           <Property Name="EXPLANATION" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BILLACCUNT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AMOUNT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DATEOFISSUE" Type="date" Nullable="false" />
+          <Property Name="DUEDATE" Type="date" Nullable="false" />
+          <Property Name="CATEGORYID" Type="int" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+          <Property Name="REGDATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBLCATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORYID" />
+          </Key>
+          <Property Name="CATEGORYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORYNAME" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TBLUSERS">
           <Key>
-            <PropertyRef Name="TABLEID" />
+            <PropertyRef Name="USERID" />
           </Key>
-          <Property Name="TABLEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="USERID" Type="int" Nullable="false" />
+          <Property Name="USERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="USERNAME" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ISACTIVE" Type="bit" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SURNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PHONE" Type="nchar" MaxLength="25" />
         </EntityType>
-        <Association Name="FK_TBLADDDEBT_TBLUSERS1">
-          <End Role="TBLUSERS" Type="Self.TBLUSERS" Multiplicity="1" />
+        <Association Name="FK_TBLADDDEBT_TBLCATEGORY">
+          <End Role="TBLCATEGORY" Type="Self.TBLCATEGORY" Multiplicity="0..1" />
+          <End Role="TBLADDDEBT" Type="Self.TBLADDDEBT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCATEGORY">
+              <PropertyRef Name="CATEGORYID" />
+            </Principal>
+            <Dependent Role="TBLADDDEBT">
+              <PropertyRef Name="CATEGORYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLADDDEBT_TBLUSERS">
+          <End Role="TBLUSERS" Type="Self.TBLUSERS" Multiplicity="0..1" />
           <End Role="TBLADDDEBT" Type="Self.TBLADDDEBT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLUSERS">
-              <PropertyRef Name="TABLEID" />
+              <PropertyRef Name="USERID" />
             </Principal>
             <Dependent Role="TBLADDDEBT">
               <PropertyRef Name="USERID" />
@@ -48,8 +66,13 @@
         </Association>
         <EntityContainer Name="ApartmanYonetimSistemiModelStoreContainer">
           <EntitySet Name="TBLADDDEBT" EntityType="Self.TBLADDDEBT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLCATEGORY" EntityType="Self.TBLCATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLUSERS" EntityType="Self.TBLUSERS" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_TBLADDDEBT_TBLUSERS1" Association="Self.FK_TBLADDDEBT_TBLUSERS1">
+          <AssociationSet Name="FK_TBLADDDEBT_TBLCATEGORY" Association="Self.FK_TBLADDDEBT_TBLCATEGORY">
+            <End Role="TBLCATEGORY" EntitySet="TBLCATEGORY" />
+            <End Role="TBLADDDEBT" EntitySet="TBLADDDEBT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLADDDEBT_TBLUSERS" Association="Self.FK_TBLADDDEBT_TBLUSERS">
             <End Role="TBLUSERS" EntitySet="TBLUSERS" />
             <End Role="TBLADDDEBT" EntitySet="TBLADDDEBT" />
           </AssociationSet>
@@ -60,8 +83,13 @@
       <Schema Namespace="ApartmanYonetimSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ApartmanYonetimSistemiEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TBLADDDEBT" EntityType="ApartmanYonetimSistemiModel.TBLADDDEBT" />
+          <EntitySet Name="TBLCATEGORY" EntityType="ApartmanYonetimSistemiModel.TBLCATEGORY" />
           <EntitySet Name="TBLUSERS" EntityType="ApartmanYonetimSistemiModel.TBLUSERS" />
-          <AssociationSet Name="FK_TBLADDDEBT_TBLUSERS1" Association="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS1">
+          <AssociationSet Name="FK_TBLADDDEBT_TBLCATEGORY" Association="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLCATEGORY">
+            <End Role="TBLCATEGORY" EntitySet="TBLCATEGORY" />
+            <End Role="TBLADDDEBT" EntitySet="TBLADDDEBT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLADDDEBT_TBLUSERS" Association="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS">
             <End Role="TBLUSERS" EntitySet="TBLUSERS" />
             <End Role="TBLADDDEBT" EntitySet="TBLADDDEBT" />
           </AssociationSet>
@@ -71,45 +99,65 @@
             <PropertyRef Name="TABLEID" />
           </Key>
           <Property Name="TABLEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
-          <Property Name="DELETE" Type="Boolean" Nullable="false" />
-          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="USERID" Type="Int32" Nullable="false" />
-          <Property Name="BUILDINGID" Type="Int32" Nullable="false" />
-          <Property Name="STATUSID" Type="Int32" Nullable="false" />
-          <Property Name="START" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FINISH" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="USERID" Type="Int32" />
           <Property Name="EXPLANATION" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TBLUSERS" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS1" FromRole="TBLADDDEBT" ToRole="TBLUSERS" />
+          <Property Name="BILLACCUNT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AMOUNT" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DATEOFISSUE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DUEDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CATEGORYID" Type="Int32" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="REGDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="TBLCATEGORY" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLCATEGORY" FromRole="TBLADDDEBT" ToRole="TBLCATEGORY" />
+          <NavigationProperty Name="TBLUSERS" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS" FromRole="TBLADDDEBT" ToRole="TBLUSERS" />
+        </EntityType>
+        <EntityType Name="TBLCATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORYID" />
+          </Key>
+          <Property Name="CATEGORYID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORYNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLADDDEBT" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLCATEGORY" FromRole="TBLCATEGORY" ToRole="TBLADDDEBT" />
         </EntityType>
         <EntityType Name="TBLUSERS">
           <Key>
-            <PropertyRef Name="TABLEID" />
+            <PropertyRef Name="USERID" />
           </Key>
-          <Property Name="TABLEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="USERID" Type="Int32" Nullable="false" />
+          <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
           <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SURNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TBLADDDEBT" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS1" FromRole="TBLUSERS" ToRole="TBLADDDEBT" />
+          <Property Name="PHONE" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TBLADDDEBT" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS" FromRole="TBLUSERS" ToRole="TBLADDDEBT" />
         </EntityType>
-        <Association Name="FK_TBLADDDEBT_TBLUSERS1">
-          <End Type="ApartmanYonetimSistemiModel.TBLUSERS" Role="TBLUSERS" Multiplicity="1" />
+        <Association Name="FK_TBLADDDEBT_TBLCATEGORY">
+          <End Type="ApartmanYonetimSistemiModel.TBLCATEGORY" Role="TBLCATEGORY" Multiplicity="0..1" />
+          <End Type="ApartmanYonetimSistemiModel.TBLADDDEBT" Role="TBLADDDEBT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCATEGORY">
+              <PropertyRef Name="CATEGORYID" />
+            </Principal>
+            <Dependent Role="TBLADDDEBT">
+              <PropertyRef Name="CATEGORYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLADDDEBT_TBLUSERS">
+          <End Type="ApartmanYonetimSistemiModel.TBLUSERS" Role="TBLUSERS" Multiplicity="0..1" />
           <End Type="ApartmanYonetimSistemiModel.TBLADDDEBT" Role="TBLADDDEBT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLUSERS">
-              <PropertyRef Name="TABLEID" />
+              <PropertyRef Name="USERID" />
             </Principal>
             <Dependent Role="TBLADDDEBT">
               <PropertyRef Name="USERID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -118,23 +166,31 @@
           <EntitySetMapping Name="TBLADDDEBT">
             <EntityTypeMapping TypeName="ApartmanYonetimSistemiModel.TBLADDDEBT">
               <MappingFragment StoreEntitySet="TBLADDDEBT">
-                <ScalarProperty Name="EXPLANATION" ColumnName="EXPLANATION" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="FINISH" ColumnName="FINISH" />
-                <ScalarProperty Name="START" ColumnName="START" />
-                <ScalarProperty Name="STATUSID" ColumnName="STATUSID" />
-                <ScalarProperty Name="BUILDINGID" ColumnName="BUILDINGID" />
-                <ScalarProperty Name="USERID" ColumnName="USERID" />
-                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
-                <ScalarProperty Name="DELETE" ColumnName="DELETE" />
+                <ScalarProperty Name="REGDATE" ColumnName="REGDATE" />
                 <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
+                <ScalarProperty Name="DUEDATE" ColumnName="DUEDATE" />
+                <ScalarProperty Name="DATEOFISSUE" ColumnName="DATEOFISSUE" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="BILLACCUNT" ColumnName="BILLACCUNT" />
+                <ScalarProperty Name="EXPLANATION" ColumnName="EXPLANATION" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
                 <ScalarProperty Name="TABLEID" ColumnName="TABLEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLCATEGORY">
+            <EntityTypeMapping TypeName="ApartmanYonetimSistemiModel.TBLCATEGORY">
+              <MappingFragment StoreEntitySet="TBLCATEGORY">
+                <ScalarProperty Name="CATEGORYNAME" ColumnName="CATEGORYNAME" />
+                <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLUSERS">
             <EntityTypeMapping TypeName="ApartmanYonetimSistemiModel.TBLUSERS">
               <MappingFragment StoreEntitySet="TBLUSERS">
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
                 <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
@@ -142,7 +198,6 @@
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
                 <ScalarProperty Name="USERID" ColumnName="USERID" />
-                <ScalarProperty Name="TABLEID" ColumnName="TABLEID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

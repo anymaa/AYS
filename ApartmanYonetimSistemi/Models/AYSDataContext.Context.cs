@@ -26,6 +26,7 @@ namespace ApartmanYonetimSistemi.Models
         }
     
         public virtual DbSet<TBLADDDEBT> TBLADDDEBT { get; set; }
+        public virtual DbSet<TBLCATEGORY> TBLCATEGORY { get; set; }
         public virtual DbSet<TBLUSERS> TBLUSERS { get; set; }
     }
 }

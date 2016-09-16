@@ -14,8 +14,8 @@
 
         //option defaults
 
-        this.startDate = moment().startOf('day');
-        this.endDate = moment().startOf('day');
+        this.startDate = moment().startOf('gün');
+        this.endDate = moment().startOf('gün');
         this.minDate = false;
         this.maxDate = false;
         this.dateLimit = false;
@@ -32,14 +32,14 @@
         this.applyClass = 'btn-success';
         this.cancelClass = 'btn-default';
 
-        this.format = 'MM/DD/YYYY';
+        this.format = 'DD/MM/YYYY';
         this.separator = ' - ';
 
         this.locale = {
-            applyLabel: 'Apply',
-            cancelLabel: 'Cancel',
-            fromLabel: 'From',
-            toLabel: 'To',
+            applyLabel: 'Kaydet',
+            cancelLabel: 'Ýptal',
+            fromLabel: 'Düzenlenme',
+            toLabel: 'Son Ödeme',
             weekLabel: 'W',
             customRangeLabel: 'Custom Range',
             daysOfWeek: moment()._lang._weekdaysMin.slice(),
@@ -84,6 +84,7 @@
                 this.cancelClass = options.cancelClass;
             }
         }
+
 
         var DRPTemplate = '<div class="daterangepicker dropdown-menu">' +
                 '<div class="calendar left"></div>' +

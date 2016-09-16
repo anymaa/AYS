@@ -12,22 +12,16 @@ namespace ApartmanYonetimSistemi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLUSERS
+    public partial class TBLCATEGORY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLUSERS()
+        public TBLCATEGORY()
         {
             this.TBLADDDEBT = new HashSet<TBLADDDEBT>();
         }
     
-        public int USERID { get; set; }
-        public string USERNAME { get; set; }
-        public string PASSWORD { get; set; }
-        public string EMAIL { get; set; }
-        public bool ISACTIVE { get; set; }
-        public string NAME { get; set; }
-        public string SURNAME { get; set; }
-        public string PHONE { get; set; }
+        public int CATEGORYID { get; set; }
+        public string CATEGORYNAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLADDDEBT> TBLADDDEBT { get; set; }

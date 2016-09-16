@@ -1,20 +1,71 @@
-$(document).ready(function() {
+var startDate;
+var endDate;
+
+$(document).ready(function () {
 		// Date Range Picker
 
-		$('#daterangepicker1').daterangepicker();
+    $('#daterangepicker1').daterangepicker({
+        "locale": {
+            "format": "DD.MM.YYYY",
+            "separator": " - ",
+            "applyLabel": "Kaydet",
+            "cancelLabel": "Ýptal",
+            "fromLabel": "Düzenlenme",
+            "toLabel": "Son Ödeme",
+            "customRangeLabel": "Custom",
+            "daysOfWeek": [
+                "Pa",
+                "Pzt",
+                "Sa",
+                "Ça",
+                "Pe",
+                "Cu",
+                "Cmt"
+            ],
+            "monthNames": [
+                "Ocak",
+                "Þubat",
+                "Mart",
+                "Nisan",
+                "Mayýs",
+                "Haziran",
+                "Temmuz",
+                "Aðustos",
+                "Eylül",
+                "Ekim",
+                "Kasým",
+                "Aralýk"
+            ],
+            "firstDay": 1
+        }
+    },
+
+    function(start, end) {
+        $('#reportrange span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
+        startDate = start;
+        endDate = end;    
+
+    }
+    );
+
+    $('#reportrange span').html(moment().subtract('days', 29).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
+
+    $('#saveBtn').click(function () {
+        console.log(startDate.format('D MMMM YYYY') + ' - ' + endDate.format('D MMMM YYYY'));
+    });
 
 
 		$('#daterangepicker2').daterangepicker({
 		ranges: {
-			'Today': [moment(), moment()],
-			'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-			'Last 7 Days': [moment().subtract('days', 6), moment()],
-			'Last 30 Days': [moment().subtract('days', 29), moment()],
-			'This Month': [moment().startOf('month'), moment().endOf('month')],
-			'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+			'Bugün': [moment(), moment()],
+			'Dün': [moment().subtract('gün', 1), moment().subtract('gün', 1)],
+			'Son 7 Gün': [moment().subtract('gün', 6), moment()],
+			'Son 30 Gün': [moment().subtract('gün', 29), moment()],
+			'Bu Ay': [moment().startOf('ay'), moment().endOf('ay')],
+			'Geçen Ay': [moment().subtract('ay', 1).startOf('ay'), moment().subtract('ay', 1).endOf('ay')]
 		},
-		opens: 'left',
-		startDate: moment().subtract('days', 29),
+		opens: 'kalan',
+		startDate: moment().subtract('gün', 29),
 		endDate: moment()
 		},
 		function(start, end) {

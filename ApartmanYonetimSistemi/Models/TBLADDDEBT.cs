@@ -15,17 +15,17 @@ namespace ApartmanYonetimSistemi.Models
     public partial class TBLADDDEBT
     {
         public int TABLEID { get; set; }
-        public bool ISACTIVE { get; set; }
-        public bool DELETE { get; set; }
-        public System.DateTime CREATEDATE { get; set; }
-        public int USERID { get; set; }
-        public int BUILDINGID { get; set; }
-        public int STATUSID { get; set; }
-        public System.DateTime START { get; set; }
-        public System.DateTime FINISH { get; set; }
-        public string NAME { get; set; }
+        public Nullable<int> USERID { get; set; }
         public string EXPLANATION { get; set; }
+        public string BILLACCUNT { get; set; }
+        public decimal AMOUNT { get; set; }
+        public System.DateTime DATEOFISSUE { get; set; }
+        public System.DateTime DUEDATE { get; set; }
+        public Nullable<int> CATEGORYID { get; set; }
+        public bool ISACTIVE { get; set; }
+        public System.DateTime REGDATE { get; set; }
     
+        public virtual TBLCATEGORY TBLCATEGORY { get; set; }
         public virtual TBLUSERS TBLUSERS { get; set; }
     }
 }

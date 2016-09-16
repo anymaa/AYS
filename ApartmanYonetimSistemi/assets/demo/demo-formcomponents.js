@@ -214,7 +214,6 @@ $(function() {
 		}
 	});
 
-	$("#e12").select2({width: "100%", tags:["red", "white", "purple", "orange", "yellow"]});
 
 
 	$("#e9").select2({width: '100%'});

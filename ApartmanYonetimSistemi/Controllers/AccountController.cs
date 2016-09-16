@@ -32,7 +32,7 @@ namespace ApartmanYonetimSistemi.Controllers
                     sm.Save();
                     Session["Member"] = sm;
 
-                    if (db.TBLADDDEBT.Count(x => x.USERID == data.USERID) == 0)
+                    if (db.TBLUSERS.Count(x => x.USERID == data.USERID) == 0)
                     {
                         return RedirectToAction("Index", "Dashboard");
                     }

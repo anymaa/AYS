@@ -101,7 +101,8 @@
 		this.component = this.element.hasClass('date') ? this.element.find('.add-on, .input-group-addon, .btn') : false;
 		this.hasInput = this.component && this.element.find('input').length;
 		if (this.component && this.component.length === 0)
-			this.component = false;
+		    this.component = false;
+
 
 		this.picker = $(DPGlobal.template);
 		this._buildEvents();
