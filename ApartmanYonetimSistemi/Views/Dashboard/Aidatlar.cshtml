@@ -1,9 +1,11 @@
-﻿@using ApartmanYonetimSistemi.Models
+﻿@using ApartmanYonetimSistemi.Controllers
+@using ApartmanYonetimSistemi.Models
 
 
 @{
     ViewBag.Title = "Aidatlar";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var db = new ApartmanYonetimSistemiEntities();
 
 }
 
@@ -38,7 +40,7 @@
 
 
         @*Borç Ekle Butonu*@
-            <a data-toggle="modal" href="~/Dashboard/BorcEkle" class="btn btn-primary-alt btn-label"><i class="ti ti-plus"></i>Borç Ekle</a>
+            <a data-toggle="modal" style="margin-top: -50px" href="~/Dashboard/BorcEkle" class="btn btn-primary-alt btn-label"><i class="ti ti-plus"></i>Borç Ekle</a>
 
             @*<!-- Modal -->
             <div class="modal fade" id="BorcEkle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -82,14 +84,12 @@
                     <div class="col-xs-12">
                         <div class="panel panel-default" data-widget='{"draggable": "false"}'>
                             <div class="panel-heading">
-                                <h2>Default Tables</h2>
+                                <h2>Aİdatlar</h2>
                                 <div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body"}'></div>
                                 <div class="options">
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <p>For basic styling—light padding and only horizontal dividers—add the base class <code>.table</code> to any <code>&lt;table&gt;</code>.
-                                </p>
                                 <div class="table-responsive">
                                     <table class="table m-n">
                                         <thead>
@@ -101,40 +101,43 @@
                                             <th>Ödeme</th>
                                             <th>Toplam</th>
                                             <th>Kalan</th>
-                                            <th>Boş Problem</th>
+                                            <th>Kayıt Tarihi</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @*@{
-                                            if(Model.addDebt != null) { 
-                                            foreach (var d in Model.addDebt)
-                                            {
+                                        @{
+                                            if (db.TBLADDDEBT != null) {
+                                                foreach (var d in db.TBLADDDEBT.Where(d => d.USERID == SessionModel.Current.User.USERID))
+                                                {
                                             <tr>
                                                 <td>
-                                                    @d.USERID
+                                                    @d.TABLEID
                                                 </td>
                                                 <td>
                                                     @d.EXPLANATION
                                                 </td>
                                                 <td>
-                                                    @d.BorcKategori
+                                                    @d.CATEGORYID
                                                 </td>
                                                 <td>
-                                                    @d.BorcOdemeDurumu
+                                                    @d.DATEOFISSUE
                                                 </td>
                                                 <td>
-                                                    @d.BorcToplam
+                                                    @d.DUEDATE
                                                 </td>
                                                 <td>
-                                                    @d.BorcKalan
+                                                    @d.AMOUNT ₺
                                                 </td>
                                                 <td>
-                                                    @d.BorcKalan
+                                                    Şimdilik Boş
+                                                </td>
+                                                <td>
+                                                    @d.REGDATE
                                                 </td>
                                             </tr>
                                                 }
                                             }
-                                        }*@
+                                        }
 
                                         </tbody>
                                     </table>

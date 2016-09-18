@@ -52,7 +52,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Tutar</label>
             <div class="col-sm-8">
-                <input type="text" id="tutar" class="form-control" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}$"/>
+                <input type="text" id="tutar" class="form-control"/>
             </div>
         </div>
 
@@ -149,7 +149,7 @@
 <script>
 
     function BorcEkle() {
-        if ($("#aciklama").val() == "" || $("#hesap").val() == "" || $("#tutar").val() == "" ) {
+        if ($("#aciklama").val() == "" || $("#hesap").val() == "" || $("#tutar").val() == "" || $("#daterangepicker1").val() == "") {
             new PNotify({
                 title: 'Ups!',
                 text: 'Lütfen alanları doldurunuz.',
@@ -166,13 +166,15 @@
                 styling: 'fontawesome'
             });
 
+
+
             $.post("@Url.Action("BorcEkle", "Dashboard")", {
                 aciklama: $("#aciklama").val(),
                 hesap: $("#hesap").val(),
                 tutar: $("#tutar").val(),
-                //start: $("#start").val(),
-                //end: $("#end").val(),
-                //kategori: $("#e12").val()
+                start: $("#daterangepicker1").val().slice(0, 10),
+                end: $("#daterangepicker1").val().slice(13, 23),
+                kategori: $("#e12").val()
 
             }).then(function() {
                 location.reload("@Url.Action("Aidatlar", "Dashboard")");
@@ -180,8 +182,8 @@
             
         });
             };
-        }
+    }
 
-    
+   
 </script>
 

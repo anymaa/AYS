@@ -41,13 +41,15 @@ $(document).ready(function () {
     },
 
     function(start, end) {
-        $('#reportrange span').html(start.format('DD MM YYYY') + ' - ' + end.format('DD MM YYYY'));
+        $('#reportrange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
         startDate = start;
         endDate = end;    
-        console.log(startDate.format('DD MM YYYY') + ' - ' + endDate.format('DD MM YYYY'));
+        console.log(startDate.format('YYYY-MM-DD') + ' - ' + endDate.format('YYYY-MM-DD'));
 
     }
     );
+
+
 
     $('#reportrange span').html(moment().subtract('days', 29).format('DD MM YYYY') + ' - ' + moment().format('DD MM YYYY'));
 

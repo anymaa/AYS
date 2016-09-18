@@ -38,9 +38,8 @@ namespace ApartmanYonetimSistemi.Controllers
             //ViewData.Model = db.BorcEkles.ToList();
             //var borc = (from b in db.BorcEkles
             //            select b).ToList();
-            var addDebt = db.TBLADDDEBT;
 
-            return View(addDebt);
+            return View();
         }
 
         //public class BorcEkle : DbContext
@@ -50,25 +49,25 @@ namespace ApartmanYonetimSistemi.Controllers
         //    public DbSet<BorcEkle> BorcEkles { get; set; }
 
         //}
-        [HttpGet]
         public ActionResult BorcEkle()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult BorcEkle(TBLADDDEBT tempDebt, string aciklama, string hesap, decimal tutar/*, DateTime start, DateTime end , string kategori*/)
+        public ActionResult BorcEkle(TBLADDDEBT tempDebt, string aciklama, string hesap, decimal tutar, DateTime start, DateTime end , string kategori)
         {
             var addDebt = new TBLADDDEBT();
             addDebt.EXPLANATION = aciklama;
             addDebt.BILLACCUNT = hesap;
             addDebt.AMOUNT = tutar;
-            //addDebt.DATEOFISSUE = start;
-            //addDebt.DUEDATE = end;
-            //addDebt.TBLCATEGORY.CATEGORYNAME = kategori;
-            //addDebt.CATEGORYID = addDebt.TBLCATEGORY.CATEGORYID;
+            addDebt.DATEOFISSUE = start;
+            addDebt.DUEDATE = end;
+
+            addDebt.CATEGORYID = KategoriEkle(kategori);
+
             addDebt.ISACTIVE = true;
-            //addDebt.REGDATE = DateTime.Now;
+            addDebt.REGDATE = DateTime.Now;
             addDebt.USERID = SessionModel.Current.User.USERID;
             tempDebt = addDebt;
 
@@ -79,6 +78,25 @@ namespace ApartmanYonetimSistemi.Controllers
             return View();
         }
 
+        public int KategoriEkle(string kategori)
+        {
+            var dataCategory = db.TBLCATEGORY;
+            var addData = new TBLCATEGORY();
+
+            foreach (var item in dataCategory)
+            {
+                if (kategori == item.CATEGORYNAME)
+                {
+                    return item.CATEGORYID;
+                    db.TBLCATEGORY.Add(addData);
+                }
+            }
+
+
+            db.TBLCATEGORY.Add(addData);
+            addData.CATEGORYNAME = kategori;
+            return addData.CATEGORYID;
+        }
 
         // GET: Profil
         public ActionResult Profil()
