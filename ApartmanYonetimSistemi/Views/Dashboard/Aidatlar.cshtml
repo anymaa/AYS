@@ -106,7 +106,7 @@
                                         </thead>
                                         <tbody>
                                         @{
-                                            if (db.TBLADDDEBT != null) {
+                                            if (db.TBLADDDEBT.Where(d => d.USERID == SessionModel.Current.User.USERID) != null) {
                                                 foreach (var d in db.TBLADDDEBT.Where(d => d.USERID == SessionModel.Current.User.USERID))
                                                 {
                                             <tr>

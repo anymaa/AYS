@@ -24,6 +24,7 @@ namespace ApartmanYonetimSistemi.Models
         public Nullable<int> CATEGORYID { get; set; }
         public bool ISACTIVE { get; set; }
         public System.DateTime REGDATE { get; set; }
+        public string BILLFILE { get; set; }
     
         public virtual TBLCATEGORY TBLCATEGORY { get; set; }
         public virtual TBLUSERS TBLUSERS { get; set; }

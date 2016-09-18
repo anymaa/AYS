@@ -2225,6 +2225,7 @@
     <Content Include="Scripts\jquery-3.1.0.min.map" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Dashboard\Profil.cshtml" />
+    <Content Include="Views\Dashboard\GiderEkle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

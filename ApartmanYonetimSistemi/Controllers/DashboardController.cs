@@ -78,6 +78,37 @@ namespace ApartmanYonetimSistemi.Controllers
             return View();
         }
 
+        public ActionResult GiderEkle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GiderEkle(TBLADDCOST tempCost, string aciklama, decimal tutar, DateTime start, DateTime end, bool odemedurumu, string fatura, string kategori)
+        {
+            var addCost = new TBLADDCOST();
+            addCost.EXPLANATION = aciklama;
+            addCost.AMOUNT = tutar;
+            addCost.DATEOFISSUE = start;
+            addCost.DUEDATE = end;
+            addCost.PAYSTATUS = odemedurumu;
+            addCost.BILLFILE = fatura;
+
+            addCost.CATEGORYID = KategoriEkle(kategori);
+
+            addCost.ISACTIVE = true;
+            addCost.REGDATE = DateTime.Now;
+            addCost.USERID = SessionModel.Current.User.USERID;
+            tempCost = addCost;
+
+
+            db.TBLADDCOST.Add(addCost);
+            db.SaveChanges();
+
+            return View();
+        }
+
+
         public int KategoriEkle(string kategori)
         {
             var dataCategory = db.TBLCATEGORY;

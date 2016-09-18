@@ -19,6 +19,7 @@
           <Property Name="CATEGORYID" Type="int" />
           <Property Name="ISACTIVE" Type="bit" Nullable="false" />
           <Property Name="REGDATE" Type="date" Nullable="false" />
+          <Property Name="BILLFILE" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TBLADDDEBT">
           <Key>
@@ -167,6 +168,7 @@
           <Property Name="REGDATE" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="TBLCATEGORY" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDCOST_TBLCATEGORY" FromRole="TBLADDCOST" ToRole="TBLCATEGORY" />
           <NavigationProperty Name="TBLUSERS" Relationship="ApartmanYonetimSistemiModel.FK_TBLADDCOST_TBLUSERS" FromRole="TBLADDCOST" ToRole="TBLUSERS" />
+          <Property Name="BILLFILE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TBLADDDEBT">
           <Key>
@@ -266,6 +268,7 @@
           <EntitySetMapping Name="TBLADDCOST">
             <EntityTypeMapping TypeName="ApartmanYonetimSistemiModel.TBLADDCOST">
               <MappingFragment StoreEntitySet="TBLADDCOST">
+                <ScalarProperty Name="BILLFILE" ColumnName="BILLFILE" />
                 <ScalarProperty Name="REGDATE" ColumnName="REGDATE" />
                 <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
                 <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
