@@ -5,9 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="748c434d744840f6afaeec3165939de2" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLADDDEBT" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLCATEGORY" Width="1.5" PointX="0.75" PointY="1.875" />
-        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLUSERS" Width="1.5" PointX="5.625" PointY="1.375" />
+        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLADDCOST" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLADDDEBT" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLCATEGORY" Width="1.5" PointX="5.375" PointY="4.625" />
+        <EntityTypeShape EntityType="ApartmanYonetimSistemiModel.TBLUSERS" Width="1.5" PointX="0.75" PointY="4.125" />
+        <AssociationConnector Association="ApartmanYonetimSistemiModel.FK_TBLADDCOST_TBLCATEGORY" />
+        <AssociationConnector Association="ApartmanYonetimSistemiModel.FK_TBLADDCOST_TBLUSERS" />
         <AssociationConnector Association="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLCATEGORY" />
         <AssociationConnector Association="ApartmanYonetimSistemiModel.FK_TBLADDDEBT_TBLUSERS" />
       </Diagram>

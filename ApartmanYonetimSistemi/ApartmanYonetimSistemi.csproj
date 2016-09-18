@@ -2258,6 +2258,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AYSDataContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TBLADDCOST.cs">
+      <DependentUpon>AYSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TBLADDDEBT.cs">
       <DependentUpon>AYSDataContext.tt</DependentUpon>
     </Compile>

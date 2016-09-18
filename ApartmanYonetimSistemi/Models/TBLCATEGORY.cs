@@ -7,18 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections;
-
 namespace ApartmanYonetimSistemi.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLCATEGORY 
+    public partial class TBLCATEGORY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TBLCATEGORY()
         {
+            this.TBLADDCOST = new HashSet<TBLADDCOST>();
             this.TBLADDDEBT = new HashSet<TBLADDDEBT>();
         }
     
@@ -26,8 +25,8 @@ namespace ApartmanYonetimSistemi.Models
         public string CATEGORYNAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TBLADDCOST> TBLADDCOST { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLADDDEBT> TBLADDDEBT { get; set; }
-
-
     }
 }
